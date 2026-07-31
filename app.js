@@ -162,6 +162,21 @@ const UI = {
   }
 };
 
+const HELP = {
+  en: {
+    commercialImportance:
+      "Assess the requirement’s relative commercial importance to your organization. Do not use expected spend alone; consider business impact, urgency, dependency, and consequences of failure."
+  },
+  uk: {
+    commercialImportance:
+      "Оцініть відносну комерційну важливість цієї закупівлі для вашої організації. Не орієнтуйтеся лише на очікувану вартість; врахуйте вплив на бізнес, терміновість, залежності та наслідки невдалої закупівлі."
+  },
+  pt: {
+    commercialImportance:
+      "Avalie a importância comercial relativa desta contratação para a sua organização. Não considere apenas o valor estimado; leve também em conta o impacto no negócio, a urgência, as dependências e as consequências de uma contratação malsucedida."
+  }
+};
+
 const OPTIONS = {
   uk: {
     Select: "Оберіть",
@@ -363,6 +378,8 @@ function applyLanguage() {
   document.querySelector("h1").textContent = ui.title;
   document.querySelector(".intro-text").textContent = ui.intro;
   document.querySelector(".language-row label").textContent = ui.reportLanguage;
+  document.querySelector('[data-help="commercialImportance"]').textContent =
+  HELP[language].commercialImportance;
 
   document.querySelectorAll(".form-section h2").forEach((heading, index) => {
     heading.textContent = ui.sections[index];
