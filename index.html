@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>AI Sourcing Strategy Generator | The Good Spending</title>
+
+  <meta
+    name="description"
+    content="Generate a practical procurement and sourcing strategy based on requirement, market, supplier, risk and category portfolio inputs."
+  >
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div>
+        <div class="brand">The Good Spending</div>
+        <div class="brand-subtitle">by Sergii Dovgalenko</div>
+      </div>
+
+      <a
+        class="hub-link"
+        href="https://www.goodspending.com/the-process-automation-hub"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Process Automation Hub
+      </a>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="intro">
+      <p class="eyebrow">AI-enabled procurement tool</p>
+      <h1>Sourcing Strategy Generator</h1>
+
+      <p class="intro-text">
+        Describe the sourcing requirement, commercial context, supplier
+        position and key risks. The tool will produce a structured procurement
+        strategy aligned with the relevant category portfolio.
+      </p>
+    </section>
+
+    <section class="tool-card">
+      <div class="language-row">
+        <label for="language">Report language</label>
+
+        <select id="language">
+          <option value="en">English</option>
+          <option value="uk">Українська</option>
+          <option value="pt">Português</option>
+        </select>
+      </div>
+
+      <form id="strategyForm">
+        <div class="form-section">
+          <h2>1. Requirement</h2>
+
+          <div class="field-grid">
+            <div class="field field-wide">
+              <label for="requestTitle">Request title</label>
+              <input id="requestTitle" type="text" required>
+            </div>
+
+            <div class="field field-wide">
+              <label for="requirementDescription">
+                Requirement description
+              </label>
+              <textarea
+                id="requirementDescription"
+                rows="5"
+                required
+              ></textarea>
+            </div>
+
+            <div class="field">
+              <label for="cpvCode">CPV code</label>
+              <input
+                id="cpvCode"
+                type="text"
+                placeholder="Example: 72000000"
+                required
+              >
+            </div>
+
+            <div class="field">
+              <label for="sourcingSubject">Sourcing subject</label>
+              <select id="sourcingSubject" required>
+                <option value="">Select</option>
+                <option value="Goods">Goods</option>
+                <option value="Services">Services</option>
+                <option value="Works">Works</option>
+                <option value="Mixed">Mixed</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="commercialImportance">
+                Commercial importance
+              </label>
+              <select id="commercialImportance" required>
+                <option value="">Select</option>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+                <option value="Critical">Critical</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="buyclass">Buy class</label>
+              <select id="buyclass" required>
+                <option value="">Select</option>
+                <option value="New buy">New buy</option>
+                <option value="Modified rebuy">Modified rebuy</option>
+                <option value="Straight rebuy">Straight rebuy</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="procurementType">Procurement type</label>
+              <select id="procurementType" required>
+                <option value="">Select</option>
+                <option value="Tender">Tender</option>
+                <option value="Contract renewal">Contract renewal</option>
+                <option value="Single source">Single source</option>
+                <option value="Sole source">Sole source</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="sourcingProcessType">
+                Sourcing process type
+              </label>
+              <select id="sourcingProcessType" required>
+                <option value="">Select</option>
+                <option value="RFP">RFP</option>
+                <option value="RFQ">RFQ</option>
+                <option value="Negotiation">Negotiation</option>
+                <option value="Direct award">Direct award</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="needByDate">Need-by date</label>
+              <input id="needByDate" type="date" required>
+            </div>
+
+            <div class="field">
+              <label for="specificationMaturity">
+                Specification maturity
+              </label>
+              <select id="specificationMaturity" required>
+                <option value="">Select</option>
+                <option value="Not developed">Not developed</option>
+                <option value="Partially developed">
+                  Partially developed
+                </option>
+                <option value="Well developed">Well developed</option>
+                <option value="Fully approved">Fully approved</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h2>2. Stakeholders and objectives</h2>
+
+          <div class="field-grid">
+            <div class="field">
+              <label for="stakeholderAlignment">
+                Stakeholder alignment
+              </label>
+              <select id="stakeholderAlignment" required>
+                <option value="">Select</option>
+                <option value="Not aligned">Not aligned</option>
+                <option value="Partially aligned">Partially aligned</option>
+                <option value="Fully aligned">Fully aligned</option>
+              </select>
+            </div>
+
+            <div class="field field-wide">
+              <label>Stakeholder intent</label>
+
+              <div id="stakeholderIntent" class="checkbox-grid">
+                <label>
+                  <input
+                    type="checkbox"
+                    value="Maintain business continuity"
+                  >
+                  Maintain business continuity
+                </label>
+
+                <label>
+                  <input type="checkbox" value="Renew as soon as possible">
+                  Renew as soon as possible
+                </label>
+
+                <label>
+                  <input type="checkbox" value="Improve service quality">
+                  Improve service quality
+                </label>
+
+                <label>
+                  <input type="checkbox" value="Enable business growth">
+                  Enable business growth
+                </label>
+
+                <label>
+                  <input type="checkbox" value="Introduce innovation">
+                  Introduce innovation
+                </label>
+
+                <label>
+                  <input type="checkbox" value="Minimise disruption">
+                  Minimise disruption
+                </label>
+              </div>
+            </div>
+
+            <div class="field field-wide">
+              <label>Category manager intent</label>
+
+              <div id="categoryManagerIntent" class="checkbox-grid">
+                <label>
+                  <input type="checkbox" value="Reduce cost">
+                  Reduce cost
+                </label>
+
+                <label>
+                  <input type="checkbox" value="Increase competition">
+                  Increase competition
+                </label>
+
+                <label>
+                  <input type="checkbox" value="Reduce supplier dependency">
+                  Reduce supplier dependency
+                </label>
+
+                <label>
+                  <input type="checkbox" value="Improve contract control">
+                  Improve contract control
+                </label>
+
+                <label>
+                  <input type="checkbox" value="Improve supplier performance">
+                  Improve supplier performance
+                </label>
+
+                <label>
+                  <input type="checkbox" value="Support innovation">
+                  Support innovation
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h2>3. Supplier and market</h2>
+
+          <div class="field-grid">
+            <div class="field">
+              <label for="incumbentSupplier">Incumbent supplier</label>
+              <select id="incumbentSupplier" required>
+                <option value="">Select</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="associationLength">
+                Association length
+              </label>
+              <select id="associationLength" required>
+                <option value="">Select</option>
+                <option value="No incumbent supplier">
+                  No incumbent supplier
+                </option>
+                <option value="Less than 1 year">Less than 1 year</option>
+                <option value="1–3 years">1–3 years</option>
+                <option value="More than 3 years">
+                  More than 3 years
+                </option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="supplierPerformance">
+                Supplier performance
+              </label>
+              <select id="supplierPerformance" required>
+                <option value="">Select</option>
+                <option value="No incumbent supplier">
+                  No incumbent supplier
+                </option>
+                <option value="Poor">Poor</option>
+                <option value="Satisfactory">Satisfactory</option>
+                <option value="Good">Good</option>
+                <option value="Excellent">Excellent</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="marketCompetition">
+                Market competition
+              </label>
+              <select id="marketCompetition" required>
+                <option value="">Select</option>
+                <option value="Low">Low</option>
+                <option value="Moderate">Moderate</option>
+                <option value="High">High</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="kraljicPosition">Kraljic position</label>
+              <select id="kraljicPosition" required>
+                <option value="">Select</option>
+                <option value="Routine">Routine</option>
+                <option value="Leverage">Leverage</option>
+                <option value="Bottleneck">Bottleneck</option>
+                <option value="Strategic">Strategic</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="supplierPreferencing">
+                Supplier preferencing
+              </label>
+              <select id="supplierPreferencing" required>
+                <option value="">Select</option>
+                <option value="No incumbent supplier">
+                  No incumbent supplier
+                </option>
+                <option value="Nuisance">Nuisance</option>
+                <option value="Exploitable">Exploitable</option>
+                <option value="Development">Development</option>
+                <option value="Core">Core</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="competitiveStrategy">
+                Competitive strategy
+              </label>
+              <select id="competitiveStrategy" required>
+                <option value="">Select</option>
+                <option value="Competitive tender">
+                  Competitive tender
+                </option>
+                <option value="Negotiated competition">
+                  Negotiated competition
+                </option>
+                <option value="Direct negotiation">
+                  Direct negotiation
+                </option>
+                <option value="Supplier development">
+                  Supplier development
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h2>4. Constraints and risks</h2>
+
+          <div class="field-grid">
+            <div class="field field-wide">
+              <label for="businessConstraints">
+                Business constraints
+              </label>
+              <textarea
+                id="businessConstraints"
+                rows="4"
+                required
+              ></textarea>
+            </div>
+
+            <div class="field field-wide">
+              <label>Supply risks</label>
+
+              <div id="supplyRisks" class="checkbox-grid">
+                <label>
+                  <input type="checkbox" value="Supplier dependency">
+                  Supplier dependency
+                </label>
+
+                <label>
+                  <input type="checkbox" value="Service disruption">
+                  Service disruption
+                </label>
+
+                <label>
+                  <input type="checkbox" value="Limited competition">
+                  Limited competition
+                </label>
+
+                <label>
+                  <input type="checkbox" value="Price escalation">
+                  Price escalation
+                </label>
+
+                <label>
+                  <input type="checkbox" value="Specification uncertainty">
+                  Specification uncertainty
+                </label>
+
+                <label>
+                  <input type="checkbox" value="Implementation risk">
+                  Implementation risk
+                </label>
+
+                <label>
+                  <input type="checkbox" value="Technology lock-in">
+                  Technology lock-in
+                </label>
+
+                <label>
+                  <input type="checkbox" value="Regulatory risk">
+                  Regulatory risk
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button id="sampleButton" type="button" class="secondary-button">
+            Insert sample data
+          </button>
+
+          <button id="submitButton" type="submit" class="primary-button">
+            Generate strategy
+          </button>
+        </div>
+      </form>
+
+      <div id="statusMessage" class="status-message" aria-live="polite"></div>
+    </section>
+
+    <section id="resultSection" class="result-section" hidden>
+      <div class="result-header">
+        <h2>Generated sourcing strategy</h2>
+
+        <button id="printButton" type="button" class="secondary-button">
+          Print or save as PDF
+        </button>
+      </div>
+
+      <div id="reportOutput"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
