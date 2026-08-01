@@ -178,9 +178,9 @@ const HELP = {
     supplierPreferencing:
       "Assess how the incumbent supplier is likely to view your organization as a customer. Core means strategically important; Development means worth growing; Exploitable means commercially valuable but not strategically important; Nuisance means low value and low attractiveness.",
     businessConstraints:
-      "Describe practical constraints or concerns such as tight deadlines, operational dependency, budget limits, transition risks, internal capability gaps, or excessive reliance on the incumbent supplier."
-    en: {
-  multipleOptions: "You may select multiple options.",
+      "Describe practical constraints or concerns such as tight deadlines, operational dependency, budget limits, transition risks, internal capability gaps, or excessive reliance on the incumbent supplier.",
+    multipleOptions:
+      "You may select multiple options."
   },
 
   uk: {
@@ -201,9 +201,9 @@ const HELP = {
     supplierPreferencing:
       "Оцініть, як чинний постачальник сприймає вашу організацію як клієнта. Core — стратегічно важливий клієнт; Development — перспективний для розвитку; Exploitable — прибутковий, але не стратегічний; Nuisance — малопривабливий і малоприбутковий.",
     businessConstraints:
-      "Опишіть практичні обмеження або занепокоєння: стислі строки, операційну залежність, бюджетні обмеження, ризики переходу, нестачу внутрішніх ресурсів або надмірну залежність від чинного постачальника."
- uk: {
-  multipleOptions: "Можна обрати кілька варіантів.",
+      "Опишіть практичні обмеження або занепокоєння: стислі строки, операційну залежність, бюджетні обмеження, ризики переходу, нестачу внутрішніх ресурсів або надмірну залежність від чинного постачальника.",
+    multipleOptions:
+      "Можна обрати кілька варіантів."
   },
 
   pt: {
@@ -224,9 +224,9 @@ const HELP = {
     supplierPreferencing:
       "Avalie como o fornecedor atual provavelmente vê a sua organização como cliente. Core significa cliente estratégico; Development, cliente com potencial de crescimento; Exploitable, cliente comercialmente valioso mas não estratégico; Nuisance, cliente de baixo valor e baixa atratividade.",
     businessConstraints:
-      "Descreva restrições ou preocupações práticas, como prazos curtos, dependência operacional, limites orçamentais, riscos de transição, falta de capacidade interna ou dependência excessiva do fornecedor atual."
- pt: {
-  multipleOptions: "Pode selecionar várias opções.",
+      "Descreva restrições ou preocupações práticas, como prazos curtos, dependência operacional, limites orçamentais, riscos de transição, falta de capacidade interna ou dependência excessiva do fornecedor atual.",
+    multipleOptions:
+      "Pode selecionar várias opções."
   }
 };
 
