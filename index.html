@@ -8,7 +8,7 @@
 
   <meta
     name="description"
-    content="Generate a practical procurement and sourcing strategy based on requirement, market, supplier, risk and category portfolio inputs."
+    content="Generate a practical procurement and sourcing strategy based on requirement, market, supplier, risk, and category portfolio inputs."
   >
 
   <link rel="stylesheet" href="styles.css">
@@ -28,7 +28,7 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-        Process Automation Hub
+        Visit Process Automation Hub
       </a>
     </div>
   </header>
@@ -80,7 +80,7 @@
             <div class="field">
               <label for="cpvCode">CPV code</label>
               <p class="field-help" data-help="cpvCode">
-  Enter the relevant CPV code. The code determines which category portfolio guidance will be applied to the recommendation.
+  Enter the relevant CPV code (you can search here https://cpvcodes.eu/en). The code determines which category portfolio guidance will be applied to the recommendation.
 </p>
               <input
                 id="cpvCode"
@@ -122,7 +122,7 @@
             <div class="field">
               <label for="buyclass">Buy class</label>
               <p class="field-help" data-help="buyclass">
-  Select whether this is a routine repeat purchase, a repeat purchase with changed requirements, or a genuinely new requirement.
+  Select whether this is a routine repeat purchase (straight rebuy), a repeat purchase with changed requirements (modified rebuy), or a genuinely new requirement (new task). More here https://marketing-dictionary.org/b/buy-classes/
 </p>
               <select id="buyclass" required>
                 <option value="">Select</option>
@@ -133,27 +133,22 @@
             </div>
 
             <div class="field">
-              <label for="procurementType">Procurement type</label>
-              <select id="procurementType" required>
-                <option value="">Select</option>
-                <option value="Tender">Tender</option>
-                <option value="Contract renewal">Contract renewal</option>
-                <option value="Single source">Single source</option>
-                <option value="Sole source">Sole source</option>
-              </select>
-            </div>
-
-            <div class="field">
               <label for="sourcingProcessType">
                 Sourcing process type
               </label>
-              <select id="sourcingProcessType" required>
-                <option value="">Select</option>
-                <option value="RFP">RFP</option>
-                <option value="RFQ">RFQ</option>
-                <option value="Negotiation">Negotiation</option>
-                <option value="Direct award">Direct award</option>
-              </select>
+             <select id="sourcingProcessType" required>
+  <option value="">Select</option>
+  <option value="RFP">RFP</option>
+  <option value="Negotiations">Negotiations</option>
+  <option value="E-Auction">E-Auction</option>
+  <option value="Single Source">Single Source</option>
+  <option value="RFQ">RFQ</option>
+  <option value="Framework Agreement">Framework Agreement</option>
+  <option value="20% Extension">20% Extension</option>
+  <option value="Current Contract">Current Contract</option>
+  <option value="Emergency procurement">Emergency procurement</option>
+  <option value="Trial or POC">Trial or POC</option>
+</select>
             </div>
 
             <div class="field">
