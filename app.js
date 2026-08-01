@@ -19,7 +19,6 @@ const UI = {
       sourcingSubject: "Sourcing subject",
       commercialImportance: "Commercial importance",
       buyclass: "Buy class",
-      procurementType: "Procurement type",
       sourcingProcessType: "Sourcing process type",
       needByDate: "Need-by date",
       specificationMaturity: "Specification maturity",
@@ -72,7 +71,6 @@ const UI = {
       sourcingSubject: "Предмет закупівлі",
       commercialImportance: "Комерційна важливість",
       buyclass: "Тип закупівельної ситуації",
-      procurementType: "Тип закупівлі",
       sourcingProcessType: "Процедура закупівлі",
       needByDate: "Потрібно до",
       specificationMaturity: "Готовність специфікації",
@@ -125,7 +123,6 @@ const UI = {
       sourcingSubject: "Objeto da contratação",
       commercialImportance: "Importância comercial",
       buyclass: "Classe de compra",
-      procurementType: "Tipo de contratação",
       sourcingProcessType: "Processo de sourcing",
       needByDate: "Data necessária",
       specificationMaturity: "Maturidade da especificação",
@@ -437,7 +434,6 @@ function buildPayload() {
     CPVCode: value("cpvCode"),
     SourcingSubject: value("sourcingSubject"),
     CompetitiveStrategy: value("competitiveStrategy"),
-    ProcurementType: value("procurementType"),
     StakeholderIntent: checkedValues("stakeholderIntent"),
     CategoryManagerIntent: checkedValues("categoryManagerIntent"),
     SupplyRisks: checkedValues("supplyRisks")
@@ -455,7 +451,6 @@ sampleButton.addEventListener("click", () => {
   document.getElementById("sourcingSubject").value = "Services";
   document.getElementById("commercialImportance").value = "High";
   document.getElementById("buyclass").value = "New buy";
-  document.getElementById("procurementType").value = "Tender";
   document.getElementById("sourcingProcessType").value = "RFP";
   document.getElementById("needByDate").value = "2026-10-31";
   document.getElementById("specificationMaturity").value =
