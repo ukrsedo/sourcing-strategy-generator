@@ -165,7 +165,7 @@ const UI = {
 const HELP = {
   en: {
     cpvCode:
-      "Enter the relevant CPV code or <a href="https://cpvcodes.eu/en" target="_blank" rel="noopener noreferrer">select it here</a>. The code determines which category portfolio guidance will be applied to the recommendation.",
+      'Enter the relevant CPV code or <a href="https://cpvcodes.eu/en" target="_blank" rel="noopener noreferrer">select it here</a>. The code determines which category portfolio guidance will be applied to the recommendation.',
     commercialImportance:
       "Assess the requirement’s relative commercial importance to your organization. Do not use expected spend alone; consider business impact, urgency, dependency, and consequences of failure.",
     buyclass:
@@ -188,7 +188,7 @@ const HELP = {
 
   uk: {
     cpvCode:
-      "Введіть відповідний код CPV або <a href="https://cpvcodes.eu/en" target="_blank" rel="noopener noreferrer">оберіть його тут</a>. За цим кодом система визначає категорійний портфель і застосовує відповідні рекомендації.",
+      'Введіть відповідний код CPV або <a href="https://cpvcodes.eu/en" target="_blank" rel="noopener noreferrer">оберіть його тут</a>. За цим кодом система визначає категорійний портфель і застосовує відповідні рекомендації.',
     commercialImportance:
       "Оцініть відносну комерційну важливість закупівлі для вашої організації. Не орієнтуйтеся лише на очікувану вартість; врахуйте вплив на бізнес, терміновість, залежності та наслідки невдалої закупівлі.",
     buyclass:
@@ -209,8 +209,9 @@ const HELP = {
       "Можна обрати кілька варіантів."
   },
 
-  cpvCode:
-  "Introduza o código CPV relevante ou <a href="https://cpvcodes.eu/en" target="_blank" rel="noopener noreferrer">selecione-o aqui</a>. O código determina qual orientação do portfólio de categoria será aplicada à recomendação.",
+  pt: {
+    cpvCode:
+      'Introduza o código CPV relevante ou <a href="https://cpvcodes.eu/en" target="_blank" rel="noopener noreferrer">selecione-o aqui</a>. O código determina qual orientação do portfólio de categoria será aplicada à recomendação.',
     commercialImportance:
       "Avalie a importância comercial relativa da contratação para a sua organização. Não considere apenas o valor estimado; considere também o impacto no negócio, a urgência, as dependências e as consequências de uma contratação malsucedida.",
     buyclass:
@@ -231,7 +232,6 @@ const HELP = {
       "Pode selecionar várias opções."
   }
 };
-
 const OPTIONS = {
   uk: {
     Select: "Оберіть",
