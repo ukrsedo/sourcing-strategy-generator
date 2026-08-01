@@ -161,16 +161,66 @@ const UI = {
 
 const HELP = {
   en: {
+    cpvCode:
+      "Enter the relevant CPV code. The code determines which category portfolio guidance will be applied to the recommendation.",
     commercialImportance:
-      "Assess the requirement’s relative commercial importance to your organization. Do not use expected spend alone; consider business impact, urgency, dependency, and consequences of failure."
+      "Assess the requirement’s relative commercial importance to your organization. Do not use expected spend alone; consider business impact, urgency, dependency, and consequences of failure.",
+    buyclass:
+      "Select whether this is a routine repeat purchase, a repeat purchase with changed requirements, or a genuinely new requirement.",
+    specificationMaturity:
+      "Indicate how clearly the requirement is defined. Less mature specifications normally require additional discovery before the sourcing process begins.",
+    stakeholderAlignment:
+      "Assess the degree of agreement between Procurement and the internal requirement owners, including priorities, scope, timing, and decision criteria.",
+    marketCompetition:
+      "Assess how many realistic and qualified suppliers could compete. Low means few viable alternatives, Moderate means some competition, and High means a strong supplier market.",
+    kraljicPosition:
+      "Classify the category by commercial impact and supply risk: Routine, Leverage, Bottleneck, or Strategic.",
+    supplierPreferencing:
+      "Assess how the incumbent supplier is likely to view your organization as a customer. Core means strategically important; Development means worth growing; Exploitable means commercially valuable but not strategically important; Nuisance means low value and low attractiveness.",
+    businessConstraints:
+      "Describe practical constraints or concerns such as tight deadlines, operational dependency, budget limits, transition risks, internal capability gaps, or excessive reliance on the incumbent supplier."
   },
+
   uk: {
+    cpvCode:
+      "Введіть відповідний код CPV. За цим кодом система визначає категорійний портфель і застосовує відповідні рекомендації.",
     commercialImportance:
-      "Оцініть відносну комерційну важливість цієї закупівлі для вашої організації. Не орієнтуйтеся лише на очікувану вартість; врахуйте вплив на бізнес, терміновість, залежності та наслідки невдалої закупівлі."
+      "Оцініть відносну комерційну важливість закупівлі для вашої організації. Не орієнтуйтеся лише на очікувану вартість; врахуйте вплив на бізнес, терміновість, залежності та наслідки невдалої закупівлі.",
+    buyclass:
+      "Визначте, чи це стандартна повторна закупівля, повторна закупівля зі зміненими вимогами або принципово нова потреба.",
+    specificationMaturity:
+      "Оцініть, наскільки чітко визначено потребу. Якщо специфікація недостатньо опрацьована, до початку закупівлі може знадобитися додаткове дослідження.",
+    stakeholderAlignment:
+      "Оцініть рівень узгодженості між закупівельниками та внутрішніми замовниками щодо пріоритетів, обсягу, строків і критеріїв прийняття рішення.",
+    marketCompetition:
+      "Оцініть кількість реальних кваліфікованих постачальників. Низький рівень означає мало прийнятних альтернатив, середній — наявність певної конкуренції, високий — розвинений конкурентний ринок.",
+    kraljicPosition:
+      "Визначте позицію категорії за комерційним впливом і ризиком постачання: некритична, важільна, дефіцитна або стратегічна.",
+    supplierPreferencing:
+      "Оцініть, як чинний постачальник сприймає вашу організацію як клієнта. Core — стратегічно важливий клієнт; Development — перспективний для розвитку; Exploitable — прибутковий, але не стратегічний; Nuisance — малопривабливий і малоприбутковий.",
+    businessConstraints:
+      "Опишіть практичні обмеження або занепокоєння: стислі строки, операційну залежність, бюджетні обмеження, ризики переходу, нестачу внутрішніх ресурсів або надмірну залежність від чинного постачальника."
   },
+
   pt: {
+    cpvCode:
+      "Introduza o código CPV relevante. O código determina qual orientação do portfólio de categoria será aplicada à recomendação.",
     commercialImportance:
-      "Avalie a importância comercial relativa desta contratação para a sua organização. Não considere apenas o valor estimado; leve também em conta o impacto no negócio, a urgência, as dependências e as consequências de uma contratação malsucedida."
+      "Avalie a importância comercial relativa da contratação para a sua organização. Não considere apenas o valor estimado; considere também o impacto no negócio, a urgência, as dependências e as consequências de uma contratação malsucedida.",
+    buyclass:
+      "Indique se esta é uma recompra de rotina, uma recompra com requisitos alterados ou uma necessidade totalmente nova.",
+    specificationMaturity:
+      "Indique o grau de definição da necessidade. Especificações menos maduras normalmente exigem investigação adicional antes do início do processo de sourcing.",
+    stakeholderAlignment:
+      "Avalie o grau de alinhamento entre Procurement e os responsáveis internos pela necessidade quanto a prioridades, escopo, prazos e critérios de decisão.",
+    marketCompetition:
+      "Avalie quantos fornecedores realistas e qualificados poderiam competir. Baixa significa poucas alternativas viáveis, Moderada significa alguma concorrência e Alta significa um mercado fornecedor forte.",
+    kraljicPosition:
+      "Classifique a categoria de acordo com o impacto comercial e o risco de fornecimento: Rotina, Alavancagem, Gargalo ou Estratégica.",
+    supplierPreferencing:
+      "Avalie como o fornecedor atual provavelmente vê a sua organização como cliente. Core significa cliente estratégico; Development, cliente com potencial de crescimento; Exploitable, cliente comercialmente valioso mas não estratégico; Nuisance, cliente de baixo valor e baixa atratividade.",
+    businessConstraints:
+      "Descreva restrições ou preocupações práticas, como prazos curtos, dependência operacional, limites orçamentais, riscos de transição, falta de capacidade interna ou dependência excessiva do fornecedor atual."
   }
 };
 
@@ -248,8 +298,14 @@ const OPTIONS = {
     "Contract renewal": "Renovação contratual",
     "Single source": "Fonte única",
     "Sole source": "Fornecedor exclusivo",
-    Negotiation: "Negociação",
-    "Direct award": "Adjudicação direta",
+    Negotiations: "Negociações",
+"E-Auction": "Leilão eletrónico",
+"Single Source": "Fonte única",
+"Framework Agreement": "Acordo-quadro",
+"20% Extension": "Extensão de 20%",
+"Current Contract": "Contrato atual",
+"Emergency procurement": "Contratação de emergência",
+"Trial or POC": "Piloto ou POC",
     "Not developed": "Não desenvolvida",
     "Partially developed": "Parcialmente desenvolvida",
     "Well developed": "Bem desenvolvida",
@@ -392,6 +448,14 @@ function applyLanguage() {
     const label = document.querySelector(`label[for="${id}"]`);
     if (label) label.textContent = text;
   });
+
+  document.querySelectorAll("[data-help]").forEach(element => {
+  const key = element.dataset.help;
+  element.textContent =
+    HELP[language]?.[key] ||
+    HELP.en[key] ||
+    element.textContent;
+});
 
   document.querySelector("#stakeholderIntent").previousElementSibling.textContent =
     ui.groupLabels.stakeholderIntent;
