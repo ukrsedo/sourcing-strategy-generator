@@ -457,12 +457,17 @@ function applyLanguage() {
     element.textContent;
 });
 
-  document.querySelector("#stakeholderIntent").previousElementSibling.textContent =
-    ui.groupLabels.stakeholderIntent;
-  document.querySelector("#categoryManagerIntent").previousElementSibling.textContent =
-    ui.groupLabels.categoryManagerIntent;
-  document.querySelector("#supplyRisks").previousElementSibling.textContent =
-    ui.groupLabels.supplyRisks;
+  document.querySelector("#stakeholderIntent")
+  .parentElement.querySelector("label").textContent =
+  ui.groupLabels.stakeholderIntent;
+
+document.querySelector("#categoryManagerIntent")
+  .parentElement.querySelector("label").textContent =
+  ui.groupLabels.categoryManagerIntent;
+
+document.querySelector("#supplyRisks")
+  .parentElement.querySelector("label").textContent =
+  ui.groupLabels.supplyRisks;
 
   document.querySelectorAll("select option").forEach(option => {
     const english = option.dataset.en;
