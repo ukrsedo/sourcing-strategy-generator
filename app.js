@@ -4,6 +4,7 @@ const PROXY_URL =
 const UI = {
   en: {
     title: "Sourcing Strategy Generator",
+    eyebrow: "AI-enabled procurement tool",
     intro: "Describe the sourcing requirement, commercial context, supplier position and key risks. The tool will produce a structured procurement strategy aligned with the relevant category portfolio.",
     reportLanguage: "Report language",
     sections: [
@@ -56,6 +57,7 @@ const UI = {
 
   uk: {
     title: "Генератор стратегії закупівель",
+    eyebrow: "ІНСТРУМЕНТ ЗАКУПІВЕЛЬ ІЗ ПІДТРИМКОЮ ШІ",
     intro: "Опишіть предмет закупівлі, комерційний контекст, позицію постачальника та ключові ризики. Інструмент сформує структуровану стратегію закупівлі з урахуванням відповідного категорійного портфеля.",
     reportLanguage: "Мова звіту",
     sections: [
@@ -108,6 +110,7 @@ const UI = {
 
   pt: {
     title: "Gerador de Estratégia de Sourcing",
+    eyebrow: "FERRAMENTA DE PROCUREMENT COM IA",
     intro: "Descreva a necessidade de sourcing, o contexto comercial, a posição do fornecedor e os principais riscos. A ferramenta produzirá uma estratégia estruturada e alinhada com o portfólio de categoria relevante.",
     reportLanguage: "Idioma do relatório",
     sections: [
@@ -440,6 +443,7 @@ function applyLanguage() {
   const ui = currentUI();
 
   document.documentElement.lang = language;
+  document.querySelector(".eyebrow").textContent = ui.eyebrow;
   document.querySelector("h1").textContent = ui.title;
   document.querySelector(".intro-text").textContent = ui.intro;
   document.querySelector(".language-row label").textContent = ui.reportLanguage;
