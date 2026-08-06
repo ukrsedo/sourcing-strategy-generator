@@ -183,7 +183,9 @@ const HELP = {
     businessConstraints:
       "Describe practical constraints or concerns such as tight deadlines, operational dependency, budget limits, transition risks, internal capability gaps, or excessive reliance on the incumbent supplier.",
     multipleOptions:
-      "You may select multiple options."
+      "You may select multiple options.",
+    supplyRisksExplanation:
+      "Supply risks relate to the external market from which the required goods or services are sourced."
   },
 
   uk: {
@@ -206,7 +208,9 @@ const HELP = {
     businessConstraints:
       "Опишіть практичні обмеження або занепокоєння: стислі строки, операційну залежність, бюджетні обмеження, ризики переходу, нестачу внутрішніх ресурсів або надмірну залежність від чинного постачальника.",
     multipleOptions:
-      "Можна обрати кілька варіантів."
+      "Можна обрати кілька варіантів.",
+    supplyRisksExplanation:
+      "Ризики постачання стосуються зовнішнього ринку, на якому закуповуються необхідні товари або послуги."
   },
 
   pt: {
@@ -229,7 +233,9 @@ const HELP = {
     businessConstraints:
       "Descreva restrições ou preocupações práticas, como prazos curtos, dependência operacional, limites orçamentais, riscos de transição, falta de capacidade interna ou dependência excessiva do fornecedor atual.",
     multipleOptions:
-      "Pode selecionar várias opções."
+      "Pode selecionar várias opções.",
+    supplyRisksExplanation:
+      "Os riscos de fornecimento estão relacionados com o mercado externo onde são adquiridos os bens ou serviços necessários."
   }
 };
 const OPTIONS = {
