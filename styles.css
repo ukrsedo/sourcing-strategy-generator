@@ -175,6 +175,15 @@ textarea:focus {
   border-color: #2563eb;
 }
 
+input:disabled,
+select:disabled,
+textarea:disabled {
+  background: #eef2f6;
+  color: #64748b;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
 .checkbox-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
