@@ -85,6 +85,9 @@
               <input
                 id="cpvCode"
                 type="text"
+                inputmode="numeric"
+                maxlength="10"
+                autocomplete="off"
                 placeholder="Example: 72000000"
                 required
               >
@@ -302,8 +305,8 @@
               </label>
               <select id="associationLength" required>
                 <option value="">Select</option>
-                <option value="No incumbent supplier">
-                  No incumbent supplier
+                <option value="N/A - no incumbent supplier">
+                  N/A
                 </option>
                 <option value="Less than 1 year">Less than 1 year</option>
                 <option value="1–3 years">1–3 years</option>
@@ -319,13 +322,13 @@
               </label>
               <select id="supplierPerformance" required>
                 <option value="">Select</option>
-                <option value="No incumbent supplier">
-                  No incumbent supplier
+                <option value="N/A - no incumbent supplier">
+                  N/A
                 </option>
                 <option value="Poor">Poor</option>
-                <option value="Satisfactory">Satisfactory</option>
-                <option value="Good">Good</option>
-                <option value="Excellent">Excellent</option>
+                <option value="Weak">Weak</option>
+                <option value="Acceptable">Acceptable</option>
+                <option value="Strong">Strong</option>
               </select>
             </div>
 
@@ -341,9 +344,11 @@
 
 <select id="marketCompetition" required>
                 <option value="">Select</option>
-                <option value="Low">Low</option>
-                <option value="Moderate">Moderate</option>
-                <option value="High">High</option>
+                <option value="1 — Single source / no realistic alternative">1 — Single source / no realistic alternative</option>
+                <option value="2 — Limited alternatives">2 — Limited alternatives</option>
+                <option value="3 — Some competition">3 — Some competition</option>
+                <option value="4 — Strong competition">4 — Strong competition</option>
+                <option value="5 — Near-perfect competition / many viable suppliers">5 — Near-perfect competition / many viable suppliers</option>
               </select>
             </div>
 
@@ -372,8 +377,8 @@
 </p>
               <select id="supplierPreferencing" required>
                 <option value="">Select</option>
-                <option value="No incumbent supplier">
-                  No incumbent supplier
+                <option value="N/A - no incumbent supplier">
+                  N/A
                 </option>
                 <option value="Nuisance">Nuisance</option>
                 <option value="Exploitable">Exploitable</option>
@@ -507,6 +512,6 @@
     </section>
   </main>
 
-  <script src="app.js?v=20260801-6"></script>
+  <script src="app.js?v=20260827-1"></script>
 </body>
 </html>
