@@ -424,57 +424,6 @@ const CHECKBOXES = {
   }
 };
 
-const CONSISTENCY = {
-  en: {
-    title: "Strategy consistency check",
-    intro: "Review these potential conflicts before generating the strategy. They do not prevent you from proceeding.",
-    review: "Review inputs",
-    proceed: "Generate anyway",
-    issues: {
-      strongMarketDirect: "The market has strong competition, but the selected competitive strategy is direct negotiation. Confirm why competition should not be used.",
-      singleSourceCompetition: "The market is described as a single source / no realistic alternative, but the selected strategy relies on competition. Recheck the market assessment or sourcing approach.",
-      increaseCompetitionDirect: "The category manager objective is to increase competition, while the selected strategy is direct negotiation. These choices work against each other unless there is a documented exception.",
-      reduceDependencyDirect: "The objective is to reduce supplier dependency, but direct negotiation with an incumbent is selected. Confirm how the proposed approach will reduce dependency.",
-      immaturePriceProcess: "The specification is not sufficiently mature for a price-led RFQ or e-auction. Consider discovery, clarification, or a more suitable sourcing process first.",
-      limitedEAuction: "An e-auction is selected despite limited or no realistic supplier alternatives. E-auctions normally require credible competitive tension.",
-      weakSupplierDirect: "The incumbent supplier is rated Poor or Weak, but the strategy is direct negotiation. Confirm why retention is preferable to testing alternatives or developing an exit plan.",
-      routineCritical: "The requirement is marked Critical while the Kraljic position is Routine. Recheck whether the portfolio classification reflects the business impact and supply risk."
-    }
-  },
-  uk: {
-    title: "Перевірка узгодженості стратегії",
-    intro: "Перевірте можливі суперечності перед формуванням стратегії. Вони не блокують продовження.",
-    review: "Переглянути дані",
-    proceed: "Все одно сформувати",
-    issues: {
-      strongMarketDirect: "На ринку сильна конкуренція, але обрано прямі переговори. Підтвердьте, чому конкурентний процес не слід використовувати.",
-      singleSourceCompetition: "Ринок визначено як єдине джерело / без реальної альтернативи, але обрана стратегія передбачає конкуренцію. Перевірте оцінку ринку або підхід до закупівлі.",
-      increaseCompetitionDirect: "Ціль категорійного менеджера — посилити конкуренцію, але обрано прямі переговори. Ці рішення суперечать одне одному, якщо немає документованого винятку.",
-      reduceDependencyDirect: "Ціль — зменшити залежність від постачальника, але обрано прямі переговори з чинним постачальником. Підтвердьте, як такий підхід зменшить залежність.",
-      immaturePriceProcess: "Специфікація недостатньо зріла для RFQ або електронного аукціону, орієнтованого на ціну. Спочатку розгляньте уточнення вимог або інший процес закупівлі.",
-      limitedEAuction: "Обрано електронний аукціон за обмеженої або відсутньої реальної конкуренції. Для аукціону зазвичай потрібна реальна конкурентна напруга.",
-      weakSupplierDirect: "Роботу чинного постачальника оцінено як незадовільну або слабку, але обрано прямі переговори. Підтвердьте, чому утримання постачальника краще за перевірку альтернатив або план виходу.",
-      routineCritical: "Закупівлю визначено як критичну, але позицію за Кралічем — як некритичну. Перевірте, чи класифікація відображає бізнес-вплив і ризик постачання."
-    }
-  },
-  pt: {
-    title: "Verificação de consistência da estratégia",
-    intro: "Reveja estes possíveis conflitos antes de gerar a estratégia. Eles não impedem que prossiga.",
-    review: "Rever dados",
-    proceed: "Gerar mesmo assim",
-    issues: {
-      strongMarketDirect: "O mercado apresenta forte concorrência, mas a estratégia selecionada é negociação direta. Confirme por que a concorrência não deve ser utilizada.",
-      singleSourceCompetition: "O mercado é descrito como fonte única / sem alternativa realista, mas a estratégia selecionada depende de concorrência. Reveja a avaliação de mercado ou a abordagem de sourcing.",
-      increaseCompetitionDirect: "O objetivo do gestor de categoria é aumentar a concorrência, enquanto a estratégia selecionada é negociação direta. Estas escolhas entram em conflito salvo se existir uma exceção documentada.",
-      reduceDependencyDirect: "O objetivo é reduzir a dependência do fornecedor, mas foi selecionada negociação direta com o incumbente. Confirme como a abordagem proposta reduzirá essa dependência.",
-      immaturePriceProcess: "A especificação não está suficientemente madura para um RFQ ou leilão eletrónico orientado por preço. Considere primeiro descoberta, clarificação ou outro processo de sourcing.",
-      limitedEAuction: "Foi selecionado um leilão eletrónico apesar de existirem poucas ou nenhumas alternativas realistas. Leilões normalmente exigem tensão competitiva credível.",
-      weakSupplierDirect: "O desempenho do fornecedor atual é Fraco ou Muito fraco, mas foi selecionada negociação direta. Confirme por que a retenção é preferível a testar alternativas ou desenvolver um plano de saída.",
-      routineCritical: "A necessidade está marcada como Crítica, enquanto a posição de Kraljic é Rotina. Reveja se a classificação reflete o impacto no negócio e o risco de fornecimento."
-    }
-  }
-};
-
 const form = document.getElementById("strategyForm");
 const submitButton = document.getElementById("submitButton");
 const sampleButton = document.getElementById("sampleButton");
@@ -483,12 +432,6 @@ const statusMessage = document.getElementById("statusMessage");
 const resultSection = document.getElementById("resultSection");
 const reportOutput = document.getElementById("reportOutput");
 const languageSelect = document.getElementById("language");
-const consistencyPanel = document.getElementById("consistencyPanel");
-const consistencyTitle = document.getElementById("consistencyTitle");
-const consistencyIntro = document.getElementById("consistencyIntro");
-const consistencyIssues = document.getElementById("consistencyIssues");
-const reviewInputsButton = document.getElementById("reviewInputsButton");
-const generateAnywayButton = document.getElementById("generateAnywayButton");
 const cpvCodeInput = document.getElementById("cpvCode");
 const needByDateInput = document.getElementById("needByDate");
 const incumbentSupplierSelect = document.getElementById("incumbentSupplier");
@@ -569,93 +512,6 @@ function syncIncumbentFields() {
   });
 }
 
-function consistencyUI() {
-  return CONSISTENCY[languageSelect.value] || CONSISTENCY.en;
-}
-
-function evaluateConsistency(payload) {
-  const issueKeys = [];
-  const market = payload.MarketCompetition || "";
-  const direct = payload.CompetitiveStrategy === "Direct negotiation";
-  const competitive =
-    payload.CompetitiveStrategy === "Competitive tender" ||
-    payload.CompetitiveStrategy === "Negotiated competition";
-  const lowCompetition =
-    market.startsWith("1 —") || market.startsWith("2 —");
-  const strongCompetition =
-    market.startsWith("4 —") || market.startsWith("5 —");
-
-  if (strongCompetition && direct) issueKeys.push("strongMarketDirect");
-  if (market.startsWith("1 —") && competitive) issueKeys.push("singleSourceCompetition");
-
-  if (
-    payload.CategoryManagerIntent.includes("Increase competition") &&
-    direct
-  ) {
-    issueKeys.push("increaseCompetitionDirect");
-  }
-
-  if (
-    payload.IncumbentSupplier === "Yes" &&
-    payload.CategoryManagerIntent.includes("Reduce supplier dependency") &&
-    direct
-  ) {
-    issueKeys.push("reduceDependencyDirect");
-  }
-
-  if (
-    ["Not developed", "Partially developed"].includes(payload.SpecificationMaturity) &&
-    ["RFQ", "E-Auction"].includes(payload.SourcingProcessType)
-  ) {
-    issueKeys.push("immaturePriceProcess");
-  }
-
-  if (lowCompetition && payload.SourcingProcessType === "E-Auction") {
-    issueKeys.push("limitedEAuction");
-  }
-
-  if (
-    payload.IncumbentSupplier === "Yes" &&
-    ["Poor", "Weak"].includes(payload.SupplierPerformance) &&
-    direct
-  ) {
-    issueKeys.push("weakSupplierDirect");
-  }
-
-  if (
-    payload.CommercialImportance === "Critical" &&
-    payload.KraljicPosition === "Routine"
-  ) {
-    issueKeys.push("routineCritical");
-  }
-
-  return [...new Set(issueKeys)];
-}
-
-function hideConsistencyPanel() {
-  consistencyPanel.hidden = true;
-  consistencyIssues.replaceChildren();
-}
-
-function showConsistencyPanel(issueKeys) {
-  const copy = consistencyUI();
-  consistencyTitle.textContent = copy.title;
-  consistencyIntro.textContent = copy.intro;
-  reviewInputsButton.textContent = copy.review;
-  generateAnywayButton.textContent = copy.proceed;
-
-  consistencyIssues.replaceChildren(
-    ...issueKeys.map(key => {
-      const li = document.createElement("li");
-      li.textContent = copy.issues[key] || key;
-      return li;
-    })
-  );
-
-  consistencyPanel.hidden = false;
-  consistencyPanel.scrollIntoView({ behavior: "smooth", block: "center" });
-}
-
 function applyLanguage() {
   const language = languageSelect.value;
   const ui = currentUI();
@@ -713,17 +569,6 @@ document.querySelector("#supplyRisks")
   submitButton.textContent = ui.buttons.submit;
   printButton.textContent = ui.buttons.print;
   document.querySelector(".result-header h2").textContent = ui.resultTitle;
-
-  const consistencyCopy = consistencyUI();
-  consistencyTitle.textContent = consistencyCopy.title;
-  consistencyIntro.textContent = consistencyCopy.intro;
-  reviewInputsButton.textContent = consistencyCopy.review;
-  generateAnywayButton.textContent = consistencyCopy.proceed;
-
-  if (!consistencyPanel.hidden) {
-    hideConsistencyPanel();
-  }
-
   showStatus("");
 }
 
@@ -792,15 +637,37 @@ sampleButton.addEventListener("click", () => {
   showStatus(currentUI().messages.sample);
 });
 
-async function generateStrategy(payload) {
+form.addEventListener("submit", async event => {
+  event.preventDefault();
+
   const ui = currentUI();
+  const payload = buildPayload();
+
+  if (!isValidCPVCode(payload.CPVCode)) {
+    showStatus(ui.messages.invalidCPV, "error");
+    cpvCodeInput.focus();
+    return;
+  }
+
+  if (payload.NeedByDate < localISODate()) {
+    showStatus(ui.messages.invalidNeedByDate, "error");
+    needByDateInput.focus();
+    return;
+  }
+
+  if (
+    payload.StakeholderIntent.length === 0 ||
+    payload.CategoryManagerIntent.length === 0 ||
+    payload.SupplyRisks.length === 0
+  ) {
+    showStatus(ui.messages.required, "error");
+    return;
+  }
 
   submitButton.disabled = true;
-  generateAnywayButton.disabled = true;
   submitButton.textContent = ui.buttons.working;
   resultSection.hidden = true;
   reportOutput.innerHTML = "";
-  hideConsistencyPanel();
   showStatus(ui.messages.working);
 
   try {
@@ -852,67 +719,8 @@ async function generateStrategy(payload) {
     );
   } finally {
     submitButton.disabled = false;
-    generateAnywayButton.disabled = false;
     submitButton.textContent = ui.buttons.submit;
   }
-}
-
-function validatePayload(payload) {
-  const ui = currentUI();
-
-  if (!isValidCPVCode(payload.CPVCode)) {
-    showStatus(ui.messages.invalidCPV, "error");
-    cpvCodeInput.focus();
-    return false;
-  }
-
-  if (payload.NeedByDate < localISODate()) {
-    showStatus(ui.messages.invalidNeedByDate, "error");
-    needByDateInput.focus();
-    return false;
-  }
-
-  if (
-    payload.StakeholderIntent.length === 0 ||
-    payload.CategoryManagerIntent.length === 0 ||
-    payload.SupplyRisks.length === 0
-  ) {
-    showStatus(ui.messages.required, "error");
-    return false;
-  }
-
-  return true;
-}
-
-form.addEventListener("submit", async event => {
-  event.preventDefault();
-
-  const payload = buildPayload();
-  if (!validatePayload(payload)) return;
-
-  const issues = evaluateConsistency(payload);
-  if (issues.length > 0) {
-    showStatus("");
-    showConsistencyPanel(issues);
-    return;
-  }
-
-  await generateStrategy(payload);
-});
-
-generateAnywayButton.addEventListener("click", async () => {
-  const payload = buildPayload();
-  if (!validatePayload(payload)) return;
-  await generateStrategy(payload);
-});
-
-reviewInputsButton.addEventListener("click", () => {
-  hideConsistencyPanel();
-  document.getElementById("competitiveStrategy").focus();
-});
-
-form.addEventListener("input", () => {
-  if (!consistencyPanel.hidden) hideConsistencyPanel();
 });
 
 printButton.addEventListener("click", () => window.print());
