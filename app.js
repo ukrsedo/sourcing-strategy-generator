@@ -639,11 +639,37 @@ function buildPayload() {
 languageSelect.addEventListener("change", applyLanguage);
 incumbentSupplierSelect.addEventListener("change", syncIncumbentFields);
 
+const SAMPLE_TEXT = {
+  en: {
+    requestTitle: "Office printing paper procurement",
+    requirementDescription:
+      "Routine purchase of standard office printing paper with clearly defined specifications.",
+    businessConstraints:
+      "Standard specifications and multiple viable suppliers; use a proportionate, price-focused process."
+  },
+  uk: {
+    requestTitle: "Закупівля офісного паперу для друку",
+    requirementDescription:
+      "Планова закупівля стандартного офісного паперу для друку з чітко визначеними характеристиками.",
+    businessConstraints:
+      "Стандартні характеристики та багато доступних постачальників; доцільний пропорційний процес із фокусом на ціні."
+  },
+  pt: {
+    requestTitle: "Aquisição de papel de impressão para escritório",
+    requirementDescription:
+      "Compra de rotina de papel de impressão padrão para escritório, com especificações claramente definidas.",
+    businessConstraints:
+      "Especificações padrão e vários fornecedores viáveis; utilizar um processo proporcional e orientado pelo preço."
+  }
+};
+
 sampleButton.addEventListener("click", () => {
+  const sample = SAMPLE_TEXT[languageSelect.value] || SAMPLE_TEXT.en;
+
   document.getElementById("requestTitle").value =
-    "Office printing paper procurement";
+    sample.requestTitle;
   document.getElementById("requirementDescription").value =
-    "Routine purchase of standard office printing paper with clearly defined specifications.";
+    sample.requirementDescription;
   document.getElementById("cpvCode").value = "30197630";
   document.getElementById("sourcingSubject").value = "Goods";
   document.getElementById("commercialImportance").value = "Low";
@@ -662,7 +688,7 @@ sampleButton.addEventListener("click", () => {
   document.getElementById("competitiveStrategy").value =
     "Competitive tender";
   document.getElementById("businessConstraints").value =
-    "Standard specifications and multiple viable suppliers; use a proportionate, price-focused process.";
+    sample.businessConstraints;
 
   setCheckedValues("stakeholderIntent", ["Minimise disruption"]);
   setCheckedValues("categoryManagerIntent", [
