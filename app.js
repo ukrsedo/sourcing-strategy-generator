@@ -168,6 +168,31 @@ const UI = {
   }
 };
 
+
+const CONSISTENCY = {
+  en: {
+    title: "Strategy consistency check",
+    intro: "Review these potential conflicts before generating the report. You can correct the inputs or proceed if the exception is deliberate.",
+    review: "Review inputs",
+    proceed: "Generate anyway",
+    checking: "Checking consistency..."
+  },
+  uk: {
+    title: "Перевірка узгодженості стратегії",
+    intro: "Перевірте можливі суперечності перед формуванням звіту. Ви можете виправити дані або продовжити, якщо виняток є свідомим.",
+    review: "Переглянути дані",
+    proceed: "Все одно сформувати",
+    checking: "Перевіряємо узгодженість..."
+  },
+  pt: {
+    title: "Verificação de consistência da estratégia",
+    intro: "Reveja possíveis conflitos antes de gerar o relatório. Pode corrigir os dados ou prosseguir se a exceção for deliberada.",
+    review: "Rever dados",
+    proceed: "Gerar mesmo assim",
+    checking: "A verificar a consistência..."
+  }
+};
+
 const HELP = {
   en: {
     cpvCode:
@@ -431,6 +456,13 @@ const printButton = document.getElementById("printButton");
 const statusMessage = document.getElementById("statusMessage");
 const resultSection = document.getElementById("resultSection");
 const reportOutput = document.getElementById("reportOutput");
+const consistencyPanel = document.getElementById("consistencyPanel");
+const consistencyTitle = document.getElementById("consistencyTitle");
+const consistencyIntro = document.getElementById("consistencyIntro");
+const consistencyIssues = document.getElementById("consistencyIssues");
+const reviewInputsButton = document.getElementById("reviewInputsButton");
+const generateAnywayButton = document.getElementById("generateAnywayButton");
+let pendingConsistencyPayload = null;
 const languageSelect = document.getElementById("language");
 const cpvCodeInput = document.getElementById("cpvCode");
 const needByDateInput = document.getElementById("needByDate");
@@ -569,6 +601,11 @@ document.querySelector("#supplyRisks")
   submitButton.textContent = ui.buttons.submit;
   printButton.textContent = ui.buttons.print;
   document.querySelector(".result-header h2").textContent = ui.resultTitle;
+  const consistency = CONSISTENCY[language] || CONSISTENCY.en;
+  consistencyTitle.textContent = consistency.title;
+  consistencyIntro.textContent = consistency.intro;
+  reviewInputsButton.textContent = consistency.review;
+  generateAnywayButton.textContent = consistency.proceed;
   showStatus("");
 }
 
@@ -637,34 +674,52 @@ sampleButton.addEventListener("click", () => {
   showStatus(currentUI().messages.sample);
 });
 
-form.addEventListener("submit", async event => {
-  event.preventDefault();
+function hideConsistency() {
+  consistencyPanel.hidden = true;
+  consistencyIssues.replaceChildren();
+  pendingConsistencyPayload = null;
+}
 
+function showConsistency(warnings, payload) {
+  consistencyIssues.replaceChildren();
+  warnings.forEach(message => {
+    const li = document.createElement("li");
+    li.textContent = message;
+    consistencyIssues.appendChild(li);
+  });
+  pendingConsistencyPayload = payload;
+  consistencyPanel.hidden = false;
+  consistencyPanel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+async function fetchPreflightWarnings(payload) {
+  const response = await fetch(PROXY_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ ...payload, PreflightOnly: true })
+  });
+  const responseText = await response.text();
+  let data = {};
+  try { data = responseText ? JSON.parse(responseText) : {}; } catch {}
+
+  if (!response.ok || data.success !== true) {
+    throw new Error(
+      data.message ||
+      data.error ||
+      `Preflight request failed with status ${response.status}.`
+    );
+  }
+
+  return Array.isArray(data.warnings)
+    ? data.warnings.filter(item => typeof item === "string" && item.trim())
+    : [];
+}
+
+async function generateStrategy(payload) {
   const ui = currentUI();
-  const payload = buildPayload();
-
-  if (!isValidCPVCode(payload.CPVCode)) {
-    showStatus(ui.messages.invalidCPV, "error");
-    cpvCodeInput.focus();
-    return;
-  }
-
-  if (payload.NeedByDate < localISODate()) {
-    showStatus(ui.messages.invalidNeedByDate, "error");
-    needByDateInput.focus();
-    return;
-  }
-
-  if (
-    payload.StakeholderIntent.length === 0 ||
-    payload.CategoryManagerIntent.length === 0 ||
-    payload.SupplyRisks.length === 0
-  ) {
-    showStatus(ui.messages.required, "error");
-    return;
-  }
-
+  hideConsistency();
   submitButton.disabled = true;
+  generateAnywayButton.disabled = true;
   submitButton.textContent = ui.buttons.working;
   resultSection.hidden = true;
   reportOutput.innerHTML = "";
@@ -674,7 +729,7 @@ form.addEventListener("submit", async event => {
     const response = await fetch(PROXY_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
+      body: JSON.stringify({ ...payload, PreflightOnly: false })
     });
 
     const responseText = await response.text();
@@ -719,8 +774,71 @@ form.addEventListener("submit", async event => {
     );
   } finally {
     submitButton.disabled = false;
+    generateAnywayButton.disabled = false;
     submitButton.textContent = ui.buttons.submit;
   }
+}
+
+form.addEventListener("submit", async event => {
+  event.preventDefault();
+
+  const ui = currentUI();
+  const payload = buildPayload();
+
+  if (!isValidCPVCode(payload.CPVCode)) {
+    showStatus(ui.messages.invalidCPV, "error");
+    cpvCodeInput.focus();
+    return;
+  }
+
+  if (payload.NeedByDate < localISODate()) {
+    showStatus(ui.messages.invalidNeedByDate, "error");
+    needByDateInput.focus();
+    return;
+  }
+
+  if (
+    payload.StakeholderIntent.length === 0 ||
+    payload.CategoryManagerIntent.length === 0 ||
+    payload.SupplyRisks.length === 0
+  ) {
+    showStatus(ui.messages.required, "error");
+    return;
+  }
+
+  hideConsistency();
+  submitButton.disabled = true;
+  showStatus((CONSISTENCY[languageSelect.value] || CONSISTENCY.en).checking);
+
+  try {
+    const warnings = await fetchPreflightWarnings(payload);
+    if (warnings.length) {
+      showStatus("");
+      showConsistency(warnings, payload);
+      return;
+    }
+    await generateStrategy(payload);
+  } catch (error) {
+    showStatus(
+      error instanceof Error ? error.message : ui.messages.failed,
+      "error"
+    );
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = ui.buttons.submit;
+  }
+});
+
+reviewInputsButton.addEventListener("click", () => {
+  hideConsistency();
+  showStatus("");
+  form.scrollIntoView({ behavior: "smooth", block: "start" });
+});
+
+generateAnywayButton.addEventListener("click", async () => {
+  if (!pendingConsistencyPayload) return;
+  const payload = pendingConsistencyPayload;
+  await generateStrategy(payload);
 });
 
 printButton.addEventListener("click", () => window.print());
