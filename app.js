@@ -1,5 +1,5 @@
 const PROXY_URL =
-  "https://sourcing-strategy-proxy.ukrsedo-e2e.workers.dev/";
+  "https://goodspending-ai-gateway.ukrsedo-e2e.workers.dev/sourcing-strategy";
 
 const UI = {
   en: {
