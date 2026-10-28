@@ -343,3 +343,45 @@ button:disabled {
     box-shadow: none;
   }
 }
+
+
+.consistency-panel {
+  margin-top: 22px;
+  padding: 18px 20px;
+  border: 1px solid #e6c56a;
+  border-left: 4px solid #b67d17;
+  border-radius: 9px;
+  background: #fff9e9;
+}
+
+.consistency-panel h3 {
+  margin-bottom: 7px;
+  color: #704d09;
+}
+
+.consistency-panel p {
+  color: #5f5235;
+}
+
+.consistency-panel ul {
+  margin: 0 0 16px;
+  padding-left: 22px;
+}
+
+.consistency-panel li {
+  margin: 7px 0;
+  line-height: 1.5;
+}
+
+.consistency-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 760px) {
+  .consistency-actions {
+    flex-direction: column;
+  }
+}
