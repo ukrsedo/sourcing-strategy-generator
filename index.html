@@ -494,6 +494,16 @@
             Generate strategy
           </button>
         </div>
+
+        <section id="consistencyPanel" class="consistency-panel" hidden aria-live="polite">
+          <h3 id="consistencyTitle">Strategy consistency check</h3>
+          <p id="consistencyIntro"></p>
+          <ul id="consistencyIssues"></ul>
+          <div class="consistency-actions">
+            <button id="reviewInputsButton" type="button" class="secondary-button">Review inputs</button>
+            <button id="generateAnywayButton" type="button" class="primary-button">Generate anyway</button>
+          </div>
+        </section>
       </form>
 
       <div id="statusMessage" class="status-message" aria-live="polite"></div>
@@ -512,6 +522,6 @@
     </section>
   </main>
 
-  <script src="app.js?v=20260827-1"></script>
+  <script src="app.js?v=20261028-trilingual-preflight"></script>
 </body>
 </html>
